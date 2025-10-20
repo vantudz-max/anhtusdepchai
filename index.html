@@ -1,120 +1,37 @@
-<!DOCTYPE html>
-<html lang="vi">
+ <!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy 20/10 Bé Iuuu ❤️</title>
+<title>Hình trái tim bằng CSS</title>
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    background: radial-gradient(circle at center, #ffdde1, #ee9ca7);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-  }
+.heart {
+  position: relative;
+  width: 100px;
+  height: 90px;
+}
 
-  /* Trái tim đập */
-  .heart {
-    width: 100px;
-    height: 100px;
-    position: relative;
-    transform: rotate(-45deg);
-    animation: beat 1s infinite;
-  }
-  .heart::before,
-  .heart::after {
-    content: "";
-    width: 100px;
-    height: 100px;
-    background: #ff3366;
-    position: absolute;
-    border-radius: 50%;
-  }
-  .heart::before {
-    top: -50px;
-    left: 0;
-  }
-  .heart::after {
-    left: 50px;
-    top: 0;
-  }
-  @keyframes beat {
-    0%, 100% { transform: rotate(-45deg) scale(1); }
-    50% { transform: rotate(-45deg) scale(1.2); }
-  }
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: red;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
 
-  /* Chữ hiện dần + phát sáng */
-  .message {
-    margin-top: 40px;
-    text-align: center;
-    color: white;
-    font-size: 1.8em;
-    text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff6699, 0 0 40px #ff0066;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-  }
-
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
-
-  .hidden { display: none; }
-
-  /* Nền lấp lánh */
-  .sparkle {
-    position: absolute;
-    background: rgba(255,255,255,0.8);
-    border-radius: 50%;
-    animation: twinkle 3s infinite;
-  }
-
-  @keyframes twinkle {
-    0%, 100% { opacity: 0; transform: scale(0); }
-    50% { opacity: 1; transform: scale(1); }
-  }
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
 </style>
 </head>
 <body>
-  <div class="heart"></div>
-  <div id="messages">
-    <div class="message hidden">Anh chúc bé có 20/10 thật vui nháaa !!!! Moaw moaw❤️</div>
-    <div class="message hidden">Bé iu của Tú giỏi nhất thế giới ❤️</div>
-    <div class="message hidden">Anh thương bé nhìu nhắm lun :3333</div>
-  </div>
-
-<script>
-  // Hiện dần từng dòng chữ
-  const msgs = document.querySelectorAll(".message");
-  let i = 0;
-  function showNext() {
-    if (i < msgs.length) {
-      msgs[i].classList.remove("hidden");
-      i++;
-      setTimeout(showNext, 3000);
-    }
-  }
-  showNext();
-
-  // Nền lấp lánh
-  for (let i = 0; i < 30; i++) {
-    const s = document.createElement("div");
-    s.className = "sparkle";
-    const size = Math.random() * 5 + 3;
-    s.style.width = `${size}px`;
-    s.style.height = `${size}px`;
-    s.style.left = `${Math.random() * 100}%`;
-    s.style.top = `${Math.random() * 100}%`;
-    s.style.animationDelay = `${Math.random() * 3}s`;
-    document.body.appendChild(s);
-  }
-</script>
+<div class="heart"></div>
 </body>
 </html>
+
